@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Structure = ({ darkMode }) => {
-  const [showAll, setShowAll] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,7 +57,13 @@ const Structure = ({ darkMode }) => {
     }
   ];
 
-  const displayedItems = structureItems.slice(0, showAll ? structureItems.length : 3);
+  const displayedItems = isHomePage ? structureItems.slice(0, 3) : structureItems;
+  const hasMore = structureItems.length > 3;
+
+  const handleViewMore = () => {
+    navigate('/structure');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <section id="structure" className="section" style={{ backgroundColor: 'rgba(0, 0, 0, 0.02)' }}>
@@ -74,11 +83,13 @@ const Structure = ({ darkMode }) => {
           ))}
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '40px' }}>
-          <button onClick={() => setShowAll(!showAll)} className="view-more-btn">
-            {showAll ? 'View Less' : 'View More'}
-          </button>
-        </div>
+        {isHomePage && hasMore && (
+          <div style={{ textAlign: 'center', marginTop: '40px' }}>
+            <button onClick={handleViewMore} className="view-more-btn">
+              <i className="fas fa-arrow-right"></i> View Full Structure
+            </button>
+          </div>
+        )}
       </div>
 
       <style jsx>{`

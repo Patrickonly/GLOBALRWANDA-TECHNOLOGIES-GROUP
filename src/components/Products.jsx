@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Products = ({ darkMode }) => {
-  const [showAll, setShowAll] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -48,7 +51,13 @@ const Products = ({ darkMode }) => {
     }
   ];
 
-  const displayedProducts = products.slice(0, showAll ? products.length : 3);
+  const displayedProducts = isHomePage ? products.slice(0, 3) : products;
+  const hasMore = products.length > 3;
+
+  const handleViewMore = () => {
+    navigate('/products');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
@@ -86,11 +95,13 @@ const Products = ({ darkMode }) => {
           ))}
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '40px' }}>
-          <button onClick={() => setShowAll(!showAll)} className="view-more-btn">
-            {showAll ? 'View Less' : 'View More'}
-          </button>
-        </div>
+        {isHomePage && hasMore && (
+          <div style={{ textAlign: 'center', marginTop: '40px' }}>
+            <button onClick={handleViewMore} className="view-more-btn">
+              <i className="fas fa-arrow-right"></i> View All Products
+            </button>
+          </div>
+        )}
       </div>
 
       <style jsx>{`

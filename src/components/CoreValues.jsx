@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CoreValues = ({ darkMode }) => {
-  const [showAll, setShowAll] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,7 +52,13 @@ const CoreValues = ({ darkMode }) => {
     }
   ];
 
-  const displayedValues = values.slice(0, showAll ? values.length : 3);
+  const displayedValues = isHomePage ? values.slice(0, 3) : values;
+  const hasMore = values.length > 3;
+
+  const handleViewMore = () => {
+    navigate('/values');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <section id="values" className="section">
@@ -67,11 +76,13 @@ const CoreValues = ({ darkMode }) => {
           ))}
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '40px' }}>
-          <button onClick={() => setShowAll(!showAll)} className="view-more-btn">
-            {showAll ? 'View Less' : 'View More'}
-          </button>
-        </div>
+        {isHomePage && hasMore && (
+          <div style={{ textAlign: 'center', marginTop: '40px' }}>
+            <button onClick={handleViewMore} className="view-more-btn">
+              <i className="fas fa-arrow-right"></i> View All Values
+            </button>
+          </div>
+        )}
       </div>
 
       <style jsx>{`
