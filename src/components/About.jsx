@@ -34,12 +34,21 @@ const About = ({ darkMode }) => {
             <p>With over a decade of experience in the tech industry, we have established ourselves as a trusted partner for digital transformation, helping organizations leverage technology to achieve their strategic objectives and gain competitive advantage in today's rapidly evolving digital landscape.</p>
           </div>
           
-          <div className="about-image-container fade-in">
-            <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-              alt="Tech Team Collaboration" 
-              className="about-image"
-            />
+          <div className="about-images-grid fade-in">
+            <div className="about-image-container main-image">
+              <img 
+                src="/image3.jpeg" 
+                alt="Digital Innovation" 
+                className="about-image"
+              />
+            </div>
+            <div className="about-image-container secondary-image">
+              <img 
+                src="/image1.jpeg" 
+                alt="Technology Solutions" 
+                className="about-image"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -64,28 +73,47 @@ const About = ({ darkMode }) => {
           color: var(--gray);
         }
 
+        .about-images-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
         .about-image-container {
           position: relative;
           border-radius: 20px;
           overflow: hidden;
-          box-shadow: var(--shadow-lg);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
           transition: var(--transition);
         }
 
+        .main-image {
+          grid-column: 1;
+        }
+
+        .secondary-image {
+          grid-column: 1;
+        }
+
         .about-image-container:hover {
-          transform: translateY(-10px);
-          box-shadow: var(--shadow-glow);
+          transform: translateY(-10px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
         }
 
         .about-image {
           width: 100%;
-          height: auto;
+          height: 300px;
+          object-fit: cover;
           display: block;
           transition: transform 0.5s ease;
         }
 
+        .main-image .about-image {
+          height: 400px;
+        }
+
         .about-image-container:hover .about-image {
-          transform: scale(1.05);
+          transform: scale(1.1);
         }
 
         @media (max-width: 768px) {

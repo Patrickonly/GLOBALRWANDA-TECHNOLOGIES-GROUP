@@ -14,6 +14,16 @@ import ContactPage from './pages/ContactPage';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     // Check for saved theme or prefer-color-scheme
@@ -34,6 +44,23 @@ function App() {
     setDarkMode(!darkMode);
     localStorage.setItem('theme', darkMode ? 'light-mode' : 'dark-mode');
   };
+
+  if (loading) {
+    return (
+      <div className="loading-screen">
+        <div className="loading-content">
+          <img src="/logo.jpg" alt="GlobalRwanda Technologies" className="loading-logo" />
+          <div className="loading-text">
+            <h2>GLOBALRWANDA</h2>
+            <p>TECHNOLOGIES GROUP</p>
+          </div>
+          <div className="loading-bar-container">
+            <div className="loading-bar"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Router>

@@ -5,10 +5,11 @@ const Hero = ({ darkMode }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const slides = [
-    { id: 1, class: 'slide-1' },
-    { id: 2, class: 'slide-2' },
-    { id: 3, class: 'slide-3' },
-    { id: 4, class: 'slide-4' }
+    { id: 1, class: 'slide-1', title: 'Innovation & Technology' },
+    { id: 2, class: 'slide-2', title: 'Cybersecurity Solutions' },
+    { id: 3, class: 'slide-3', title: 'Digital Transformation' },
+    { id: 4, class: 'slide-4', title: 'Data Analytics' },
+    { id: 5, class: 'slide-5', title: 'Connected Solutions' }
   ];
 
   useEffect(() => {
@@ -144,22 +145,27 @@ const Hero = ({ darkMode }) => {
         }
 
         .slide-1 {
-          background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+          background-image: url('/image1.jpeg');
         }
 
         .slide-2 {
-          background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-          animation-delay: -5s;
+          background-image: url('/image2.jpeg');
+          animation-delay: -4s;
         }
 
         .slide-3 {
-          background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-          animation-delay: -10s;
+          background-image: url('/image3.jpeg');
+          animation-delay: -8s;
         }
 
         .slide-4 {
-          background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-          animation-delay: -15s;
+          background-image: url('/image4.jpeg');
+          animation-delay: -12s;
+        }
+
+        .slide-5 {
+          background-image: url('/image5.jpeg');
+          animation-delay: -16s;
         }
 
         .slider-controls {
@@ -173,19 +179,51 @@ const Hero = ({ darkMode }) => {
         }
 
         .slider-dot {
-          width: 12px;
-          height: 12px;
+          width: 14px;
+          height: 14px;
           border-radius: 50%;
-          background-color: rgba(255, 255, 255, 0.4);
-          border: 2px solid transparent;
+          background-color: rgba(255, 255, 255, 0.5);
+          border: 2px solid rgba(255, 255, 255, 0.8);
           cursor: pointer;
-          transition: var(--transition);
+          transition: all 0.3s ease;
+          position: relative;
+        }
+
+        .slider-dot:hover {
+          background-color: rgba(255, 255, 255, 0.7);
+          transform: scale(1.2);
         }
 
         .slider-dot.active {
           background-color: var(--primary-blue);
-          transform: scale(1.3);
-          box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+          border-color: var(--primary-blue);
+          transform: scale(1.4);
+          box-shadow: 0 0 15px rgba(37, 99, 235, 0.8), 0 0 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .slider-dot.active::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 24px;
+          height: 24px;
+          border: 2px solid var(--primary-blue);
+          border-radius: 50%;
+          opacity: 0.3;
+          animation: pulse-ring 2s ease-out infinite;
+        }
+
+        @keyframes pulse-ring {
+          0% {
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 0.5;
+          }
+          100% {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 0;
+          }
         }
 
         .hero::before {
