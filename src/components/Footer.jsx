@@ -112,7 +112,7 @@ const Footer = ({ darkMode }) => {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2023 GLOBALRWANDA TECHNOLOGIES GROUP. All rights reserved. | KG 7 Ave, Kigali, Rwanda</p>
+          <p>&copy; {new Date().getFullYear()} GLOBALRWANDA TECHNOLOGIES GROUP. All rights reserved.</p>
           <p style={{ marginTop: '10px', fontSize: '12px' }}>Designed and Developed with ❤️ by GLOBALRWANDA TECHNOLOGIES GROUP</p>
         </div>
       </div>
