@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const CoreValues = ({ darkMode }) => {
+  const [showAll, setShowAll] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -47,6 +49,8 @@ const CoreValues = ({ darkMode }) => {
     }
   ];
 
+  const displayedValues = values.slice(0, showAll ? values.length : 3);
+
   return (
     <section id="values" className="section">
       <div className="container">
@@ -54,13 +58,19 @@ const CoreValues = ({ darkMode }) => {
         <div className="section-subtitle fade-in">The foundation of everything we do</div>
         
         <div className="values-grid">
-          {values.map((value, index) => (
+          {displayedValues.map((value, index) => (
             <div key={index} className="value-card fade-in">
               <div className="value-icon"><i className={value.icon}></i></div>
               <h3 className="value-title">{value.title}</h3>
               <p className="value-text">{value.description}</p>
             </div>
           ))}
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+          <button onClick={() => setShowAll(!showAll)} className="view-more-btn">
+            {showAll ? 'View Less' : 'View More'}
+          </button>
         </div>
       </div>
 
@@ -132,6 +142,23 @@ const CoreValues = ({ darkMode }) => {
 
         .light-mode .value-text {
           color: var(--gray);
+        }
+
+        .view-more-btn {
+          padding: 12px 30px;
+          background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+          color: var(--white);
+          border: none;
+          border-radius: 25px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: var(--transition);
+          font-size: 16px;
+        }
+
+        .view-more-btn:hover {
+          transform: scale(1.05);
+          box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
         }
       `}</style>
     </section>

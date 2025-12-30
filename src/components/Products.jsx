@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Products = ({ darkMode }) => {
+  const [showAll, setShowAll] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -46,6 +48,8 @@ const Products = ({ darkMode }) => {
     }
   ];
 
+  const displayedProducts = products.slice(0, showAll ? products.length : 3);
+
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     const targetElement = document.querySelector(targetId);
@@ -67,7 +71,7 @@ const Products = ({ darkMode }) => {
         </p>
         
         <div className="products-grid">
-          {products.map((product, index) => (
+          {displayedProducts.map((product, index) => (
             <div key={index} className="product-card fade-in">
               <div className="product-tag">{product.tag}</div>
               <h3 className="product-title">{product.title}</h3>
@@ -80,6 +84,12 @@ const Products = ({ darkMode }) => {
               <a href="#contact" className="product-btn" onClick={(e) => handleNavClick(e, '#contact')}>Learn More</a>
             </div>
           ))}
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+          <button onClick={() => setShowAll(!showAll)} className="view-more-btn">
+            {showAll ? 'View Less' : 'View More'}
+          </button>
         </div>
       </div>
 
@@ -191,6 +201,23 @@ const Products = ({ darkMode }) => {
         }
 
         .product-btn:hover {
+          transform: scale(1.05);
+          box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .view-more-btn {
+          padding: 12px 30px;
+          background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+          color: var(--white);
+          border: none;
+          border-radius: 25px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: var(--transition);
+          font-size: 16px;
+        }
+
+        .view-more-btn:hover {
           transform: scale(1.05);
           box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
         }

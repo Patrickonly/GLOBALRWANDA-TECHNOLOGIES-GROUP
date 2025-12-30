@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Structure = ({ darkMode }) => {
+  const [showAll, setShowAll] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -52,6 +54,8 @@ const Structure = ({ darkMode }) => {
     }
   ];
 
+  const displayedItems = structureItems.slice(0, showAll ? structureItems.length : 3);
+
   return (
     <section id="structure" className="section" style={{ backgroundColor: 'rgba(0, 0, 0, 0.02)' }}>
       <div className="container">
@@ -59,7 +63,7 @@ const Structure = ({ darkMode }) => {
         <div className="section-subtitle fade-in">Organized for excellence and operational efficiency</div>
         
         <div className="structure-container">
-          {structureItems.map((item, index) => (
+          {displayedItems.map((item, index) => (
             <div key={index} className="structure-item fade-in">
               <div className="structure-icon"><i className={item.icon}></i></div>
               <div className="structure-content">
@@ -68,6 +72,12 @@ const Structure = ({ darkMode }) => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+          <button onClick={() => setShowAll(!showAll)} className="view-more-btn">
+            {showAll ? 'View Less' : 'View More'}
+          </button>
         </div>
       </div>
 
@@ -150,6 +160,23 @@ const Structure = ({ darkMode }) => {
             margin-right: 0;
             margin-bottom: 20px;
           }
+        }
+
+        .view-more-btn {
+          padding: 12px 30px;
+          background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+          color: var(--white);
+          border: none;
+          border-radius: 25px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: var(--transition);
+          font-size: 16px;
+        }
+
+        .view-more-btn:hover {
+          transform: scale(1.05);
+          box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
         }
       `}</style>
     </section>

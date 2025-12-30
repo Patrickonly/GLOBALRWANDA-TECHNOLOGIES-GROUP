@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Services = ({ darkMode }) => {
+  const [showAll, setShowAll] = useState(true);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -52,6 +54,8 @@ const Services = ({ darkMode }) => {
     }
   ];
 
+  const displayedServices = services.slice(0, showAll ? services.length : 6);
+
   return (
     <section id="services" className="section" style={{ backgroundColor: 'rgba(0, 0, 0, 0.02)' }}>
       <div className="container">
@@ -59,13 +63,19 @@ const Services = ({ darkMode }) => {
         <div className="section-subtitle fade-in">Comprehensive digital solutions for modern businesses</div>
         
         <div className="services-grid">
-          {services.map((service, index) => (
+          {displayedServices.map((service, index) => (
             <div key={index} className="service-card fade-in">
               <div className="service-icon"><i className={service.icon}></i></div>
               <h3 className="service-title">{service.title}</h3>
               <p className="service-description">{service.description}</p>
             </div>
           ))}
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+          <button onClick={() => setShowAll(!showAll)} className="view-more-btn">
+            {showAll ? 'View Less' : 'View More'}
+          </button>
         </div>
       </div>
 
@@ -166,6 +176,23 @@ const Services = ({ darkMode }) => {
           .services-grid {
             grid-template-columns: 1fr;
           }
+        }
+
+        .view-more-btn {
+          padding: 12px 30px;
+          background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+          color: var(--white);
+          border: none;
+          border-radius: 25px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: var(--transition);
+          font-size: 16px;
+        }
+
+        .view-more-btn:hover {
+          transform: scale(1.05);
+          box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
         }
       `}</style>
     </section>
