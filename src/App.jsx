@@ -7,6 +7,7 @@ import FloatingButtons from './components/FloatingButtons';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
+import ProductsPage from './pages/ProductsPage';
 import VisionPage from './pages/VisionPage';
 import ValuesPage from './pages/ValuesPage';
 import StructurePage from './pages/StructurePage';
@@ -70,6 +71,7 @@ function App() {
           <Route path="/" element={<HomePage darkMode={darkMode} />} />
           <Route path="/about" element={<AboutPage darkMode={darkMode} />} />
           <Route path="/services" element={<ServicesPage darkMode={darkMode} />} />
+          <Route path="/products" element={<ProductsPage darkMode={darkMode} />} />
           <Route path="/vision" element={<VisionPage darkMode={darkMode} />} />
           <Route path="/values" element={<ValuesPage darkMode={darkMode} />} />
           <Route path="/structure" element={<StructurePage darkMode={darkMode} />} />

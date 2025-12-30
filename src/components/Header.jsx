@@ -45,6 +45,7 @@ const Header = ({ darkMode, toggleTheme }) => {
             <li><Link to="/" onClick={handleNavClick}>Home</Link></li>
             <li><Link to="/about" onClick={handleNavClick}>About</Link></li>
             <li><Link to="/services" onClick={handleNavClick}>Services</Link></li>
+            <li><Link to="/products" onClick={handleNavClick}>Products</Link></li>
             <li><Link to="/vision" onClick={handleNavClick}>Vision</Link></li>
             <li><Link to="/values" onClick={handleNavClick}>Values</Link></li>
             <li><Link to="/structure" onClick={handleNavClick}>Structure</Link></li>
