@@ -10,7 +10,7 @@ import Contact from '../components/Contact';
 
 const HomePage = ({ darkMode }) => {
   return (
-    <>
+    <div style={{ paddingTop: '80px' }}>
       <Hero darkMode={darkMode} />
       <About darkMode={darkMode} />
       <Services darkMode={darkMode} />
@@ -19,7 +19,7 @@ const HomePage = ({ darkMode }) => {
       <Products darkMode={darkMode} />
       <Structure darkMode={darkMode} />
       <Contact darkMode={darkMode} />
-    </>
+    </div>
   );
 };
 

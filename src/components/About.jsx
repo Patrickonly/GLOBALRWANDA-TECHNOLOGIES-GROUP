@@ -22,7 +22,7 @@ const About = ({ darkMode }) => {
   }, []);
 
   return (
-    <section id="about" className="section" ref={aboutRef}>
+    <section id="about" className="section about-section" ref={aboutRef}>
       <div className="container">
         <h2 className="section-title fade-in">About Our Company</h2>
         <div className="section-subtitle fade-in">Transforming businesses through technology innovation</div>
@@ -42,31 +42,35 @@ const About = ({ darkMode }) => {
                 className="about-image"
               />
             </div>
-            <div className="about-image-container secondary-image">
-              <img 
-                src="/image1.jpeg" 
-                alt="Technology Solutions" 
-                className="about-image"
-              />
-            </div>
           </div>
         </div>
       </div>
 
       <style jsx>{`
+        .about-section {
+          width: 100%;
+          overflow-x: hidden;
+        }
+
         .about-content {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 60px;
           align-items: center;
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .about-text {
+          width: 100%;
         }
 
         .about-text p {
           font-size: 16px;
-          line-height: 1.6;
+          line-height: 1.8;
           margin-bottom: 24px;
-          color: rgba(255, 255, 255, 0.7);
-          text-align: left;
+          color: rgba(255, 255, 255, 0.85);
+          text-align: justify;
         }
 
         .light-mode .about-text p {
@@ -74,9 +78,10 @@ const About = ({ darkMode }) => {
         }
 
         .about-images-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
         }
 
         .about-image-container {
@@ -85,14 +90,7 @@ const About = ({ darkMode }) => {
           overflow: hidden;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
           transition: var(--transition);
-        }
-
-        .main-image {
-          grid-column: 1;
-        }
-
-        .secondary-image {
-          grid-column: 1;
+          width: 100%;
         }
 
         .about-image-container:hover {
@@ -102,24 +100,45 @@ const About = ({ darkMode }) => {
 
         .about-image {
           width: 100%;
-          height: 300px;
+          height: 450px;
           object-fit: cover;
           display: block;
           transition: transform 0.5s ease;
-        }
-
-        .main-image .about-image {
-          height: 400px;
         }
 
         .about-image-container:hover .about-image {
           transform: scale(1.1);
         }
 
+        @media (max-width: 1024px) {
+          .about-content {
+            gap: 40px;
+          }
+        }
+
         @media (max-width: 768px) {
           .about-content {
             grid-template-columns: 1fr;
             gap: 40px;
+          }
+
+          .about-image {
+            height: 350px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          #about {
+            padding: 60px 0;
+          }
+
+          .about-text p {
+            font-size: 15px;
+            text-align: left;
+          }
+
+          .about-image {
+            height: 300px;
           }
         }
       `}</style>

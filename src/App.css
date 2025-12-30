@@ -28,6 +28,10 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -35,6 +39,9 @@ body {
   overflow-x: hidden;
   transition: var(--transition);
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 /* Loading Screen Styles */
@@ -146,6 +153,13 @@ body {
   }
 }
 
+.App {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 .dark-mode {
   background-color: var(--dark-bg);
   color: var(--dark-text);
@@ -166,6 +180,19 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
 }
 
 .section {
